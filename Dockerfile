@@ -13,4 +13,4 @@ ENV APP_HOME /app
 WORKDIR $APP_HOME
 COPY . .
 
-CMD exec gunicorn --bind :$PORT --workers 1 --threads 8 main:app
+CMD ["python3", "-m", "flask", "run", "--host=0.0.0.0"]
