@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Work Smarter</title>
+  </head>
+  <body>
+    <div class = "header">
+      <h1 class = "heading">Work Smarter</h1>
+    </div>
+    <div class = "content">
+    <p>Google calendar updated!</p>
+        {% for date in calendar %}
+            <p>{{date}}</p>
+        {% endfor %}
+    </div>
+  </body>
+  <style>
+    html, body, h1 {
+      margin: 0;
+    }
+
+    .header {
+      background-color: red;
+      padding: 20px;
+      font-weight: bolder;
+      font-family: sans-serif;
+    }
+  </style>
+</html>
