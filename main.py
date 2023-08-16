@@ -19,5 +19,3 @@ def index():
 @app.route("/success", methods = ["GET"])
 def success():
     return render_template("success.jinja2")
-
-app.run()
