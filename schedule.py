@@ -3,11 +3,16 @@ import chromedriver_binary
 from selenium.webdriver.common.by import By
 import re
 
-with open(".env.local", "r") as file:
-    env = dict([(line[:line.index("=")], line[line.index("=") + 1:]) for line in file.read().strip().split("\n")])
+from decouple import config
 
 def get_calendar():
-    browser = webdriver.Chrome()
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--disable-gpu")
+    chrome_options.add_argument("window-size=1024,768")
+    chrome_options.add_argument("--no-sandbox")
+
+    browser = webdriver.Chrome(chrome_options = chrome_options)
 
     # Sign in
     browser.get("https://worksmart.michaels.com/etm/")
@@ -16,8 +21,8 @@ def get_calendar():
     passwordField = browser.find_element(By.ID, "passwordField")
     loginButton = browser.find_element(By.ID, "loginButton")
 
-    loginField.send_keys(env["LOGIN"])
-    passwordField.send_keys(env["PASSWORD"])
+    loginField.send_keys(config("LOGIN"))
+    passwordField.send_keys(config("PASSWORD"))
     loginButton.click()
 
     # Scrape schedule

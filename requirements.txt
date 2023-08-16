@@ -1,0 +1,6 @@
+selenium
+chromedriver-binary-auto
+python-decouple
+gcsa
+flask
+gunicorn
