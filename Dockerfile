@@ -13,4 +13,5 @@ ENV APP_HOME /app
 WORKDIR $APP_HOME
 COPY . .
 
-CMD ["python3", "-m", "flask", "run", "--host=0.0.0.0"]
+CMD ["gunicorn", "-b", "0.0.0.0:8080", "app:app"]
+EXPOSE 8080

@@ -4,3 +4,4 @@ python-decouple
 gcsa
 flask
 pebble
+gunicorn
