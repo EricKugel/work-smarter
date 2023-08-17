@@ -37,5 +37,5 @@ def populate(schedule):
         if start < datetime.now(pytz.timezone("America/Chicago")):
             continue
         if not (year, month, day, time_start_hour, time_start_minute) in all_start_times:
-            event = Event("Eric Working (at Michael's)", start = datetime(year, month, day, time_start_hour, time_start_minute), end = datetime(year, month, day, time_end_hour, time_end_minute), reminders = [PopupReminder(minutes_before_start=60), PopupReminder(minutes_before_start=20)])
+            event = Event("Eric Working (at Michael's)", start = tz.localize(datetime(year, month, day, time_start_hour, time_start_minute), True), end = tz.localize(datetime(year, month, day, time_end_hour, time_end_minute), True), reminders = [PopupReminder(minutes_before_start=60), PopupReminder(minutes_before_start=20)])
             gc.add_event(event)
