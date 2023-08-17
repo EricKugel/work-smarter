@@ -13,5 +13,5 @@ ENV APP_HOME /app
 WORKDIR $APP_HOME
 COPY . .
 
-CMD ["gunicorn", "-b", "0.0.0.0:8080", "main:app"]
+CMD ["gunicorn", "-b", "0.0.0.0:5000", "main:app"]
 EXPOSE 8080
