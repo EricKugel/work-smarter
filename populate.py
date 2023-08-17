@@ -32,7 +32,7 @@ def populate(schedule):
         time_start_hour, time_start_minute = [int(thing) for thing in time_start.split(":")]
         time_end_hour, time_end_minute = [int(thing) for thing in time_end.split(":")]
         unaware = datetime(year, month, day, time_start_hour, time_start_minute)
-        tz = pytz.timezone("Amercia/Chicago")
+        tz = pytz.timezone("America/Chicago")
         start = tz.localize(unaware, is_dst = True)
         if start < datetime.now(pytz.timezone("America/Chicago")):
             continue
