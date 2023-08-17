@@ -18,7 +18,7 @@ def index():
 
 @app.route("/success", methods = ["GET"])
 def success():
-    return render_template("success.jinja2")
+    return render_template("success.jinja2", calendar = calendar)
 
 if __name__ == "__main__":
     app.run(debug=True)
