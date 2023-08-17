@@ -6,6 +6,8 @@ from datetime import datetime
 
 from decouple import config
 
+import pytz
+
 import os
 
 path = os.getcwd() + "/credentials"
@@ -29,8 +31,10 @@ def populate(schedule):
         time_start, time_end = item[1].split(" - ")
         time_start_hour, time_start_minute = [int(thing) for thing in time_start.split(":")]
         time_end_hour, time_end_minute = [int(thing) for thing in time_end.split(":")]
-        start = datetime(year, month, day, time_start_hour, time_start_minute)
-        if start < datetime.now():
+        unaware = datetime(year, month, day, time_start_hour, time_start_minute)
+        tz = pytz.timezone("Amercia/Chicago")
+        start = tz.localize(unaware, is_dst = True)
+        if start < datetime.now(pytz.timezone("America/Chicago")):
             continue
         if not (year, month, day, time_start_hour, time_start_minute) in all_start_times:
             event = Event("Eric Working (at Michael's)", start = datetime(year, month, day, time_start_hour, time_start_minute), end = datetime(year, month, day, time_end_hour, time_end_minute), reminders = [PopupReminder(minutes_before_start=60), PopupReminder(minutes_before_start=20)])
