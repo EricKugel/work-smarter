@@ -14,4 +14,4 @@ WORKDIR $APP_HOME
 COPY . .
 
 CMD ["gunicorn", "-b", "0.0.0.0:5000", "main:app"]
-EXPOSE 8080
+EXPOSE 5000
