@@ -11,6 +11,9 @@
     </div>
     <div class = "content">
     <p>Google calendar updated!</p>
+    {% for item in calendar %}
+    <p>{{item}}</p>
+    {% endfor %}
     </div>
   </body>
   <style>

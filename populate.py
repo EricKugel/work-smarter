@@ -5,7 +5,6 @@ from gcsa.reminders import PopupReminder
 from datetime import datetime
 
 from decouple import config
-from pebble import concurrent
 
 import os
 
@@ -15,7 +14,6 @@ if not os.path.isdir(path):
 with open("credentials/credentials.json", "w") as file:
     file.write(config("CREDENTIALS_JSON"))
 
-@concurrent.process(timeout=120)
 def create_process():
     return GoogleCalendar("2000badbbb201fceb9770e07aaeebe18389075171628cfe4912fb70872264fc5@group.calendar.google.com", credentials_path="./credentials/credentials.json")
 
@@ -23,7 +21,7 @@ def populate(schedule):
     try:
         process = create_process()
         gc = process.result()
-    except TimeoutError:
+    except:
         return "Whoops!"
     
     events = list(gc.get_events())
